@@ -1,5 +1,6 @@
 <script>
-  import { fly, fade } from "svelte/transition";
+  import { fly } from "svelte/transition";
+  import { flip } from "svelte/animate";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
@@ -21,8 +22,8 @@
 
 <section transition:fly={{ x: 400 }}>
   <article>
-    {#each cartItems as item, i}
-      <p transition:fade>
+    {#each cartItems as item, i (item.title + i)}
+      <p animate:flip>
         <span>{item.title}</span>
         <span>{item.price} €</span>
         <button
