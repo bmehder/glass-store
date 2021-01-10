@@ -14,6 +14,6 @@
 <main>
   <Product on:addtocart={addToCart} />
   {#if cartItems.length}
-    <Cart {cartItems} on:remove={removeFromCart} />
+    <Cart {cartItems} on:removefromcart={removeFromCart} />
   {/if}
 </main>

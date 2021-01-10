@@ -13,10 +13,7 @@
       </figure>
       <div>
         <h4>{product.title}</h4>
-        <button
-          on:click={(e) => {
-            dispatch('addtocart', product);
-          }}>Add to Cart</button>
+        <button on:click={(e) => dispatch('addtocart', product)}>Add to Cart</button>
       </div>
     </article>
   {/each}

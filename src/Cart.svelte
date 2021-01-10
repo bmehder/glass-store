@@ -3,20 +3,22 @@
   import { flip } from "svelte/animate";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+  const i11n = new Intl.NumberFormat("nl-NL");
 
   export let cartItems = [];
   let subtotal = 0;
   let total;
 
-  const removeItem = (i) => {
+  const removeFromCart = (i) => {
     cartItems = cartItems.filter((_, index) => index != i);
+    dispatch("removefromcart", i);
   };
-
-  $: cartItems.length > 1 ? (total = subtotal * 0.9) : (total = subtotal);
 
   $: {
     subtotal = 0;
     cartItems.forEach((item) => (subtotal += item.price));
+    cartItems.length > 1 ? (total = subtotal * 0.9) : (total = subtotal);
+    total;
   }
 </script>
 
@@ -26,19 +28,14 @@
       <p animate:flip>
         <span>{item.title}</span>
         <span>{item.price} €</span>
-        <button
-          on:click={(e) => {
-            dispatch('remove', i);
-            removeItem(i);
-          }}>X</button>
+        <button on:click={(e) => removeFromCart(i)}>X</button>
       </p>
     {/each}
   </article>
   <div>
     Total:
-    {new Intl.NumberFormat('de-DE').format(total)}
-    €
-    <br />
+    {i11n.format(total.toFixed(2))}
+    €<br />
     {#if cartItems.length > 1}
       <small><em>(10% Quantity Discount Applied)</em></small>
     {/if}
