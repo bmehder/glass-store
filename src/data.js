@@ -1,7 +1,7 @@
 export let products = [
   {
     title: "Apples",
-    price: 23.17,
+    price: 23,
     image: "https://source.unsplash.com/220x220/",
   },
   {
