@@ -1,30 +1,26 @@
 <script>
+  import { cartItems } from "./cartItems";
   import { fly } from "svelte/transition";
   import { flip } from "svelte/animate";
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
   const i11n = new Intl.NumberFormat("nl-NL");
 
-  export let cartItems = [];
   let subtotal = 0;
   let total;
 
   const removeFromCart = (i) => {
-    cartItems = cartItems.filter((_, index) => index != i);
-    dispatch("removefromcart", i);
+    $cartItems = $cartItems.filter((_, index) => index != i);
   };
 
   $: {
     subtotal = 0;
-    cartItems.forEach((item) => (subtotal += item.price));
-    cartItems.length > 1 ? (total = subtotal * 0.9) : (total = subtotal);
-    total;
+    $cartItems.forEach((item) => (subtotal += item.price));
+    $cartItems.length > 1 ? (total = subtotal * 0.9) : (total = subtotal);
   }
 </script>
 
 <section transition:fly={{ x: 400 }}>
   <article>
-    {#each cartItems as item, i (item.title + i)}
+    {#each $cartItems as item, i (item.title + i)}
       <p animate:flip>
         <span>{item.title}</span>
         <span>{item.price} €</span>
