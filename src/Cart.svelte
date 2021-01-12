@@ -32,7 +32,7 @@
     Total:
     {i11n.format(total.toFixed(2))}
     €<br />
-    {#if cartItems.length > 1}
+    {#if $cartItems.length > 1}
       <small><em>(10% Quantity Discount Applied)</em></small>
     {/if}
   </div>
