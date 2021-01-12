@@ -4,7 +4,6 @@
   import { flip } from "svelte/animate";
   const i11n = new Intl.NumberFormat("nl-NL");
 
-  let subtotal = 0;
   let total;
 
   const removeFromCart = (i) => {
@@ -12,7 +11,7 @@
   };
 
   $: {
-    subtotal = 0;
+    let subtotal = 0;
     $cartItems.forEach((item) => (subtotal += item.price));
     $cartItems.length > 1 ? (total = subtotal * 0.9) : (total = subtotal);
   }
@@ -41,8 +40,9 @@
 
 <style>
   section {
-    position: fixed;
+    position: absolute;
     width: 280px;
+    height: auto;
     top: 1%;
     right: 1%;
     padding: 2em 1em;
@@ -52,7 +52,6 @@
     backdrop-filter: blur(20px);
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
     color: white;
-    overflow-y: scroll;
   }
   article {
     display: flex;

@@ -1,6 +1,6 @@
 <script>
-  import { products } from "./data.js";
   import { cartItems } from "./cartItems";
+  import { products } from "./data.js";
 
   const addToCart = (product) => ($cartItems = [...$cartItems, product]);
 </script>
@@ -29,9 +29,10 @@
   section {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     max-width: 960px;
-    margin: 40px auto;
-    padding: 80px 40px;
+    margin: 60px auto;
+    padding: 60px 40px;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5) inset,
       10px 10px 20px rgba(0, 0, 0, 0.1);
@@ -96,5 +97,10 @@
       10px 10px 20px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     cursor: pointer;
+  }
+  @media (max-width: 800px) {
+    article {
+      margin: 20px auto;
+    }
   }
 </style>
